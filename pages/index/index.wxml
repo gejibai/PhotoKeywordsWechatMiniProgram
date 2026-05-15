@@ -1,0 +1,60 @@
+<view class="page">
+  <view class="hero card">
+    <view class="badge">Mini Program Preview</view>
+    <view class="title">日常修图关键词完善器</view>
+    <view class="subtitle">输入一句想法，自动拆解成可复制的修图提示词。体验版先用离线规则，不接后端。</view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">原始想法</view>
+    <textarea class="idea" value="{{form.rawIdea}}" placeholder="例如：把这张咖啡店照片做成日系手账注解风，保留原图氛围，底部留白方便放文字" bindinput="onRawIdeaInput" />
+    <view class="actions">
+      <button class="btn primary" bindtap="analyzeOverwrite">覆盖填充</button>
+      <button class="btn ghost" bindtap="analyzeFillEmpty">只补空项</button>
+      <button class="btn soft" bindtap="clearAll">清空</button>
+    </view>
+  </view>
+
+  <view class="section-title outside">选择修图方向</view>
+  <scroll-view class="category-scroll" scroll-x>
+    <view class="category-row">
+      <block wx:for="{{categories}}" wx:key="id">
+        <view class="category-card {{selectedCategory === item.id ? 'active' : ''}}" data-id="{{item.id}}" bindtap="selectCategory">
+          <view class="category-name">{{item.name}}</view>
+          <view class="category-desc">{{item.desc}}</view>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+
+  <view class="card">
+    <view class="section-title">字段完善</view>
+    <block wx:for="{{fields}}" wx:key="key">
+      <view class="field" wx:if="{{!item.noteOnly || selectedCategory === 'note'}}">
+        <view class="label">{{item.label}}</view>
+        <textarea wx:if="{{item.multiline}}" class="field-input textarea" value="{{form[item.key]}}" data-key="{{item.key}}" bindinput="onFieldInput" />
+        <input wx:else class="field-input" value="{{form[item.key]}}" data-key="{{item.key}}" bindinput="onFieldInput" />
+      </view>
+    </block>
+  </view>
+
+  <view class="card result-card">
+    <view class="result-head">
+      <view>
+        <view class="section-title">生成结果</view>
+        <view class="hint">所有输出都会包含底部 240px / 12% 安全留白规则。</view>
+      </view>
+      <view class="score">{{filledScore}}%</view>
+    </view>
+    <view class="tabs">
+      <block wx:for="{{tabs}}" wx:key="id">
+        <view class="tab {{activeTab === item.id ? 'on' : ''}}" data-id="{{item.id}}" bindtap="setTab">{{item.name}}</view>
+      </block>
+    </view>
+    <view class="output">{{currentOutput}}</view>
+    <view class="actions">
+      <button class="btn primary" bindtap="copyCurrent">复制当前</button>
+      <button class="btn ghost" bindtap="copyAll">复制全部</button>
+    </view>
+  </view>
+</view>
