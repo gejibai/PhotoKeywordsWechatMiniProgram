@@ -1,101 +1,88 @@
 .page {
+  min-height: 100vh;
   padding: 28rpx;
   padding-bottom: 80rpx;
-}
-
-.card {
-  background: rgba(255, 255, 255, 0.94);
-  border-radius: 36rpx;
-  box-shadow: 0 20rpx 60rpx rgba(15, 23, 42, 0.08);
-  padding: 32rpx;
-  margin-bottom: 28rpx;
+  box-sizing: border-box;
 }
 
 .hero {
-  padding: 42rpx 34rpx;
+  padding: 18rpx 4rpx 30rpx;
 }
 
-.badge {
+.eyebrow {
   display: inline-flex;
-  padding: 10rpx 18rpx;
+  padding: 8rpx 16rpx;
   border-radius: 999rpx;
-  background: #eff6ff;
-  color: #2563eb;
-  font-size: 24rpx;
-  font-weight: 700;
+  background: #ecfeff;
+  color: #0e7490;
+  font-size: 23rpx;
+  font-weight: 800;
 }
 
 .title {
   margin-top: 22rpx;
-  font-size: 52rpx;
-  line-height: 1.08;
+  font-size: 48rpx;
+  line-height: 1.14;
   font-weight: 900;
+  color: #111827;
 }
 
 .subtitle {
-  margin-top: 18rpx;
-  color: #6b7280;
-  font-size: 29rpx;
-  line-height: 1.7;
+  margin-top: 16rpx;
+  color: #64748b;
+  font-size: 28rpx;
+  line-height: 1.65;
+}
+
+.panel {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1rpx solid rgba(226, 232, 240, 0.9);
+  border-radius: 24rpx;
+  box-shadow: 0 18rpx 50rpx rgba(15, 23, 42, 0.07);
+  padding: 30rpx;
+  margin-bottom: 26rpx;
+}
+
+.step-head {
+  display: flex;
+  gap: 18rpx;
+  align-items: flex-start;
+  margin: 8rpx 4rpx 18rpx;
+}
+
+.step-head.inner {
+  margin: 0 0 18rpx;
+}
+
+.step-head.no-margin {
+  margin: 0;
+}
+
+.step-index {
+  flex: 0 0 48rpx;
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  background: #111827;
+  color: #fff;
+  text-align: center;
+  line-height: 48rpx;
+  font-size: 24rpx;
+  font-weight: 900;
 }
 
 .section-title {
-  font-size: 34rpx;
+  font-size: 32rpx;
+  line-height: 1.25;
   font-weight: 850;
   color: #111827;
 }
 
-.outside {
-  margin: 10rpx 8rpx 18rpx;
-}
-
-.idea {
-  margin-top: 18rpx;
-  width: 100%;
-  min-height: 190rpx;
-  box-sizing: border-box;
-  border-radius: 26rpx;
-  background: #f8fafc;
-  border: 1rpx solid #e5e7eb;
-  padding: 24rpx;
-  font-size: 30rpx;
-  line-height: 1.6;
-}
-
-.actions {
-  margin-top: 20rpx;
-  display: flex;
-  gap: 14rpx;
-  flex-wrap: wrap;
-}
-
-.btn {
-  min-height: 78rpx;
-  padding: 0 28rpx;
-  border-radius: 999rpx;
-  font-size: 27rpx;
-  font-weight: 800;
-  line-height: 78rpx;
-}
-
-.btn::after {
-  border: 0;
-}
-
-.primary {
-  background: #2563eb;
-  color: #fff;
-}
-
-.ghost {
-  background: #fff;
-  color: #2563eb;
-  border: 1rpx solid #dbeafe;
-}
-
-.soft {
-  background: #f1f5f9;
-  color: #334155;
+.section-hint {
+  margin-top: 8rpx;
+  color: #64748b;
+  font-size: 24rpx;
+  line-height: 1.5;
 }
 
 .category-scroll {
@@ -105,41 +92,134 @@
 
 .category-row {
   display: flex;
-  gap: 18rpx;
+  gap: 16rpx;
 }
 
 .category-card {
   display: inline-flex;
   flex-direction: column;
-  width: 250rpx;
-  min-height: 168rpx;
+  width: 242rpx;
+  min-height: 150rpx;
   box-sizing: border-box;
-  padding: 24rpx;
-  border-radius: 30rpx;
+  padding: 22rpx;
+  border-radius: 22rpx;
   background: #fff;
   border: 2rpx solid #e5e7eb;
   white-space: normal;
 }
 
 .category-card.active {
-  border-color: #60a5fa;
-  box-shadow: 0 12rpx 32rpx rgba(37, 99, 235, 0.14);
+  border-color: #14b8a6;
+  background: #f0fdfa;
+  box-shadow: 0 10rpx 30rpx rgba(20, 184, 166, 0.16);
 }
 
 .category-name {
-  font-size: 27rpx;
+  font-size: 26rpx;
+  line-height: 1.25;
   font-weight: 850;
+  color: #111827;
 }
 
 .category-desc {
-  margin-top: 14rpx;
+  margin-top: 12rpx;
   color: #64748b;
-  font-size: 23rpx;
-  line-height: 1.45;
+  font-size: 22rpx;
+  line-height: 1.4;
+}
+
+.idea {
+  width: 100%;
+  min-height: 210rpx;
+  box-sizing: border-box;
+  border-radius: 20rpx;
+  background: #f8fafc;
+  border: 1rpx solid #e5e7eb;
+  padding: 24rpx;
+  font-size: 29rpx;
+  line-height: 1.6;
+  color: #111827;
+}
+
+.chip-row {
+  margin-top: 18rpx;
+  display: flex;
+  gap: 12rpx;
+  flex-wrap: wrap;
+}
+
+.chip {
+  padding: 12rpx 18rpx;
+  border-radius: 999rpx;
+  background: #f1f5f9;
+  color: #334155;
+  font-size: 24rpx;
+  font-weight: 750;
+}
+
+.actions {
+  margin-top: 22rpx;
+  display: flex;
+  gap: 14rpx;
+  flex-wrap: wrap;
+}
+
+.btn {
+  min-height: 76rpx;
+  padding: 0 26rpx;
+  border-radius: 18rpx;
+  font-size: 26rpx;
+  font-weight: 800;
+  line-height: 76rpx;
+}
+
+.btn::after {
+  border: 0;
+}
+
+.primary {
+  background: #0f766e;
+  color: #fff;
+}
+
+.ghost {
+  background: #fff;
+  color: #0f766e;
+  border: 1rpx solid #99f6e4;
+}
+
+.soft {
+  background: #f1f5f9;
+  color: #334155;
+}
+
+.advanced {
+  padding-top: 28rpx;
+}
+
+.advanced-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20rpx;
+}
+
+.chevron {
+  flex-shrink: 0;
+  padding: 10rpx 18rpx;
+  border-radius: 999rpx;
+  background: #f8fafc;
+  color: #0f766e;
+  font-size: 24rpx;
+  font-weight: 800;
+}
+
+.fields {
+  margin-top: 12rpx;
 }
 
 .field {
-  margin-top: 24rpx;
+  margin-top: 22rpx;
 }
 
 .label {
@@ -153,11 +233,12 @@
   min-height: 78rpx;
   width: 100%;
   box-sizing: border-box;
-  border-radius: 24rpx;
+  border-radius: 18rpx;
   background: #f8fafc;
   border: 1rpx solid #e5e7eb;
   padding: 0 22rpx;
-  font-size: 29rpx;
+  font-size: 28rpx;
+  color: #111827;
 }
 
 .textarea {
@@ -170,22 +251,15 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 20rpx;
-}
-
-.hint {
-  margin-top: 8rpx;
-  color: #64748b;
-  font-size: 24rpx;
-  line-height: 1.5;
+  gap: 18rpx;
 }
 
 .score {
   flex-shrink: 0;
   padding: 10rpx 18rpx;
   border-radius: 999rpx;
-  background: #eff6ff;
-  color: #2563eb;
+  background: #ecfeff;
+  color: #0e7490;
   font-size: 24rpx;
   font-weight: 800;
 }
@@ -195,14 +269,14 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   padding: 8rpx;
-  border-radius: 999rpx;
+  border-radius: 18rpx;
   background: #f1f5f9;
 }
 
 .tab {
   text-align: center;
-  padding: 16rpx 8rpx;
-  border-radius: 999rpx;
+  padding: 16rpx 6rpx;
+  border-radius: 14rpx;
   color: #64748b;
   font-size: 24rpx;
   font-weight: 800;
@@ -221,7 +295,7 @@
   overflow: auto;
   white-space: pre-wrap;
   word-break: break-word;
-  border-radius: 28rpx;
+  border-radius: 20rpx;
   background: #111827;
   color: #f8fafc;
   padding: 26rpx;

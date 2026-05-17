@@ -31,14 +31,15 @@ const defaultForm = {
 };
 
 const categories = [
-  { id: "portrait", name: "人物照片轻修", desc: "自拍、合照、头像、证件感轻修" },
-  { id: "lifestyle", name: "生活场景增强", desc: "房间、咖啡馆、书桌、餐桌" },
-  { id: "film", name: "胶片 / CCD", desc: "复古颗粒、低饱和、氛围感" },
-  { id: "note", name: "照片手账注解", desc: "白色手绘线、箭头、小碎念" },
-  { id: "travel", name: "风景旅行", desc: "城市、海边、山野、记忆感" },
-  { id: "pet_object", name: "宠物 / 小物件", desc: "猫狗、玩偶、杯子、书" },
-  { id: "cleanup", name: "背景清理", desc: "去杂物、补背景、留白" },
-  { id: "general", name: "通用修图增强", desc: "自然、干净、真实" }
+  { id: "portrait", name: "人像变好看", desc: "自拍、合照、头像，自然干净不网红" },
+  { id: "lifestyle", name: "日常变干净", desc: "房间、咖啡馆、书桌、餐桌更舒服" },
+  { id: "film", name: "胶片氛围感", desc: "复古颗粒、低饱和、随手拍感觉" },
+  { id: "note", name: "加手账小字", desc: "白色手绘线、箭头、小碎念文字" },
+  { id: "travel", name: "旅行更出片", desc: "城市、路牌、海边、山野、记忆感" },
+  { id: "pet_object", name: "小物更可爱", desc: "宠物、玩偶、杯子、书、本子" },
+  { id: "cleanup", name: "去掉杂物", desc: "清理背景、补空白、改比例、留白" },
+  { id: "doodle_snap", name: "涂鸦快照风", desc: "手持随拍、霓虹马克笔、密集涂鸦覆盖" },
+  { id: "general", name: "我也说不清", desc: "先帮我变自然、干净、好看" }
 ];
 
 const templates = {
@@ -52,6 +53,7 @@ const templates = {
     color: "低饱和暖白，肤色自然，不偏灰不偏黄",
     composition: "保留原构图，不裁切头发、手和身体关键部位",
     quality: "高清细节，自然锐化，保留皮肤纹理",
+    retouchStrength: "自然轻修",
     negativePrompt: "不要改变人物长相，不要大眼瘦脸，不要过度磨皮，不要塑料皮肤，不要新增奇怪肢体和文字"
   },
   lifestyle: {
@@ -132,6 +134,29 @@ const templates = {
     quality: "修复区域纹理自然，边缘干净",
     negativePrompt: "不要改变主体，不要生成重复纹理，不要拉伸背景，不要新增奇怪物体，不要破坏透视"
   },
+  doodle_snap: {
+    photoType: "真实手持手机随拍快照",
+    usageScene: "社交媒体故事批注、学生日记、杂志标记风格",
+    keep: "保留真实手持手机随拍质感，场景可为校园、画廊、工作室、咖啡馆、夜市或街头；保留墙面艺术、标签、海报、货架、桌子、灯具、书籍、展示板、人群、织物、阴影、噪点、轻微模糊和不完美曝光",
+    edit: "在照片上叠加非常强烈、密集、混乱的数字马克笔涂鸦；主体轮廓用亮粉色粗线勾勒，带青色偏移线条或光晕；主体周围向外放射黄橙尖刺、角、射线、鳄状物、太阳光芒般怪物形态；画面留白和四周加入大量粗糙手写文字，包括大标题、情绪标语、重复词、短笑话、日期标签、学习批注",
+    subject: "学生、艺术家、朋友或安静路人，背影或四分之三侧面，可拿笔记本、帆布袋、咖啡、手机、速写本等道具",
+    scene: "校园、画廊、工作室、咖啡馆、夜市或街头",
+    actionRelation: "正在看展、学习、走路、等待、浏览或拿着日常道具",
+    targetStyle: "真实手持手机随拍快照风格、学生日记、杂志标记、社交媒体故事批注感、霓虹混乱密集夸张涂鸦覆盖",
+    mood: "俏皮、青春、走神、有点过度刺激、亲切又有个性",
+    lighting: "保留现场光和不完美曝光，可有噪点、轻微模糊、阴影和手机快照感",
+    color: "亮粉色主体粗线、青色偏移线条或光晕、黄橙色尖刺射线、霓虹高对比涂鸦",
+    texture: "粗厚数字马克笔、摇晃黑色轮廓、粗糙笔刷边缘、随意压力变化",
+    composition: "整体略微倾斜、不完美构图，主体位于画面中心或偏右；涂鸦层明显覆盖照片上方，可遮挡部分人物和物体，但底图仍清晰",
+    quality: "底图保持真实快照清晰度，允许噪点、轻微糊、曝光不完美；涂鸦边缘粗糙有手写感",
+    annotationObjects: "主体轮廓、周围空间、墙面艺术、海报、标签、桌面物件、人群和道具",
+    annotationTextStyle: "大量粗糙手写文字，大标题、情绪标语、重复词、短笑话、日期标签、学习批注，像学生日记和社交媒体故事涂写",
+    lineStyle: "粗厚数字马克笔线条、亮粉色粗描边、青色偏移线条、摇晃黑色轮廓、随意压力变化",
+    decorations: "星星、爪印、蜘蛛网边角、光环、抽象眼睛、植物、花朵、爱心、箭头、计数符号、下划线、涂鸦条、黄橙尖刺和太阳光芒怪物形态",
+    blankSpaceRule: "四周和留白处允许密集文字与符号，但底部安全留白区仍需保留给后期排版",
+    retouchStrength: "明显风格化",
+    negativePrompt: "不要做成干净极简风，不要只有少量装饰，不要柔和淡雅，不要把底图完全盖住，不要生成乱码文字，不要让主体完全不可辨认"
+  },
   general: {
     photoType: "日常照片",
     keep: "保留原照片主体、真实光影、空间关系和照片感",
@@ -163,11 +188,11 @@ const fields = [
   { key: "texture", label: "质感" },
   { key: "quality", label: "画质" },
   { key: "retouchStrength", label: "修图强度" },
-  { key: "annotationObjects", label: "注解对象", noteOnly: true },
-  { key: "annotationTextStyle", label: "注解文字风格", noteOnly: true },
-  { key: "lineStyle", label: "线条风格", noteOnly: true },
-  { key: "decorations", label: "装饰元素", noteOnly: true },
-  { key: "blankSpaceRule", label: "注解留白规则", multiline: true, noteOnly: true },
+  { key: "annotationObjects", label: "注解对象" },
+  { key: "annotationTextStyle", label: "注解文字风格" },
+  { key: "lineStyle", label: "线条风格" },
+  { key: "decorations", label: "装饰元素" },
+  { key: "blankSpaceRule", label: "注解留白规则", multiline: true },
   { key: "negativePrompt", label: "禁止项", multiline: true },
   { key: "bottomSafeArea", label: "底部安全留白", multiline: true }
 ];
@@ -179,74 +204,189 @@ const tabs = [
   { id: "json", name: "JSON" }
 ];
 
+const effectChips = ["自然", "清透", "胶片", "奶油色", "底部留白", "密集涂鸦", "白色手绘线", "去掉杂物"];
+
+const rules = [
+  { category: "doodle_snap", words: ["马克笔", "数字马克笔", "霓虹", "混乱涂鸦", "密集涂鸦", "涂鸦覆盖", "快照", "手持手机", "学生日记", "杂志标记", "故事批注"] },
+  { category: "note", words: ["手账", "注解", "涂鸦", "标注", "箭头", "小字", "日系", "可爱", "白色线条", "描边", "doodle"] },
+  { category: "cleanup", words: ["清理", "去掉", "去除", "擦除", "扩图", "补背景", "留白", "白边", "墙面", "杂物"] },
+  { category: "film", words: ["胶片", "ccd", "复古", "日杂", "怀旧", "颗粒", "低饱和", "闪光灯", "拍立得", "film"] },
+  { category: "portrait", words: ["自拍", "人像", "人物", "合照", "脸", "皮肤", "妆容", "穿搭", "证件照", "写真", "五官"] },
+  { category: "travel", words: ["旅行", "街景", "风景", "海边", "天空", "城市", "山", "树", "日落", "咖啡店", "路牌", "公园"] },
+  { category: "pet_object", words: ["猫", "狗", "宠物", "小物", "玩偶", "杯子", "花", "书", "桌面", "植物", "静物"] },
+  { category: "lifestyle", words: ["房间", "卧室", "客厅", "咖啡馆", "餐厅", "书桌", "室内", "空间", "餐桌"] }
+];
+
+function clean(value) {
+  return String(value || "").trim();
+}
+
 function hasAny(text, words) {
   return words.some((word) => text.includes(word));
 }
 
-function detectCategory(rawIdea) {
-  const text = rawIdea.toLowerCase();
-  if (hasAny(text, ["手账", "注解", "涂鸦", "标注", "箭头", "小字", "日系", "可爱", "白色线条", "描边"])) return "note";
-  if (hasAny(text, ["清理", "去掉", "去除", "擦除", "扩图", "补背景", "留白", "白边", "墙面", "杂物"])) return "cleanup";
-  if (hasAny(text, ["胶片", "ccd", "复古", "日杂", "怀旧", "颗粒", "低饱和", "闪光灯", "拍立得"])) return "film";
-  if (hasAny(text, ["自拍", "人像", "人物", "合照", "脸", "皮肤", "妆容", "穿搭", "证件照", "写真", "五官"])) return "portrait";
-  if (hasAny(text, ["旅行", "街景", "风景", "海边", "天空", "城市", "山", "树", "日落", "咖啡店", "路牌"])) return "travel";
-  if (hasAny(text, ["猫", "狗", "宠物", "小物", "玩偶", "杯子", "花", "书", "桌面", "植物"])) return "pet_object";
-  if (hasAny(text, ["房间", "卧室", "客厅", "咖啡馆", "餐厅", "书桌", "室内", "空间", "餐桌"])) return "lifestyle";
-  return "general";
+function uniqueJoin(values) {
+  const list = values
+    .filter(Boolean)
+    .flatMap((value) => String(value).split(/[；;，,]/))
+    .map((value) => value.trim())
+    .filter(Boolean);
+  return Array.from(new Set(list)).join("；");
 }
 
-function fillEmpty(form, patch) {
-  const next = { ...form };
-  Object.keys(patch).forEach((key) => {
-    if (patch[key] && !next[key]) next[key] = patch[key];
-  });
-  next.bottomSafeArea = next.bottomSafeArea || BOTTOM_SAFE_AREA;
-  return next;
+function detectCategory(rawIdea, fallback = "general") {
+  const text = rawIdea.toLowerCase();
+  const matched = rules.find((rule) => hasAny(text, rule.words));
+  return matched ? matched.category : fallback;
+}
+
+function detectPhotoType(rawIdea, category) {
+  const text = rawIdea.toLowerCase();
+  if (hasAny(text, ["合照", "双人", "多人"])) return "双人/多人合照";
+  if (hasAny(text, ["自拍", "人像", "人物", "脸", "皮肤", "五官", "穿搭"])) return "人物照片";
+  if (hasAny(text, ["猫", "狗", "宠物"])) return "宠物照片";
+  if (hasAny(text, ["杯子", "书", "花", "植物", "玩偶", "小物", "静物"])) return "物件静物";
+  if (hasAny(text, ["餐桌", "咖啡", "甜品", "饮料", "饭", "食物"])) return "餐桌/咖啡/甜品";
+  if (hasAny(text, ["快照", "手持手机", "马克笔", "霓虹", "涂鸦覆盖"])) return "真实手持手机随拍快照";
+  if (hasAny(text, ["旅行", "街拍", "街道", "城市", "路牌"])) return "旅行街拍";
+  if (hasAny(text, ["海边", "山", "天空", "风景", "公园", "草地"])) return "风景照片";
+  if (hasAny(text, ["房间", "卧室", "客厅", "书桌", "室内", "咖啡馆", "餐厅"])) return "室内场景";
+  return templates[category].photoType || defaultForm.photoType;
+}
+
+function ideaEnhancements(rawIdea) {
+  const text = rawIdea.toLowerCase();
+  return {
+    targetStyle: uniqueJoin([
+      hasAny(text, ["自然", "真实", "清透"]) ? "自然清透、真实照片感" : "",
+      hasAny(text, ["日系", "生活感"]) ? "日系生活感" : "",
+      hasAny(text, ["胶片", "film", "ccd", "复古", "拍立得"]) ? "胶片感、CCD感、复古生活照、轻微颗粒" : "",
+      hasAny(text, ["手绘", "手账", "注解", "涂鸦", "doodle"]) ? "手绘风注解、日系可爱手账、白色线稿、一笔画风格" : "",
+      hasAny(text, ["高级", "干净"]) ? "干净高级、简洁留白" : "",
+      hasAny(text, ["电影", "电影感"]) ? "电影感、柔和对比" : ""
+    ]),
+    mood: uniqueJoin([
+      hasAny(text, ["温暖", "暖"]) ? "温暖" : "",
+      hasAny(text, ["松弛", "放松", "舒服"]) ? "松弛、舒服" : "",
+      hasAny(text, ["可爱", "小碎念"]) ? "可爱、日记感" : "",
+      hasAny(text, ["安静", "治愈"]) ? "安静、治愈" : "",
+      hasAny(text, ["夏日", "海边"]) ? "夏日、清爽" : "",
+      hasAny(text, ["怀旧", "复古", "ccd", "胶片"]) ? "怀旧、随手记录感" : ""
+    ]),
+    lighting: uniqueJoin([
+      hasAny(text, ["窗光", "窗边"]) ? "柔和窗边散射光" : "",
+      hasAny(text, ["自然光"]) ? "柔和自然光" : "",
+      hasAny(text, ["傍晚", "夕阳", "黄昏"]) ? "傍晚暖光，阴影自然" : "",
+      hasAny(text, ["夜景", "晚上"]) ? "夜景环境光，亮部不过曝" : "",
+      hasAny(text, ["闪光灯", "ccd"]) ? "允许轻微闪光灯质感，但不要死白" : "",
+      hasAny(text, ["提亮", "暗部"]) ? "适度提亮暗部，保留真实阴影" : ""
+    ]),
+    color: uniqueJoin([
+      hasAny(text, ["低饱和"]) ? "低饱和、颜色克制" : "",
+      hasAny(text, ["奶油", "暖白"]) ? "奶油色、暖白、柔和肤色" : "",
+      hasAny(text, ["蓝", "清爽", "海边"]) ? "清透蓝绿、干净明亮" : "",
+      hasAny(text, ["胶片", "ccd", "复古"]) ? "低饱和，轻微偏暖或偏青，黑位不死黑" : "",
+      hasAny(text, ["粉", "可爱", "少女"]) ? "浅粉、浅蓝、柔和浅色点缀" : ""
+    ]),
+    composition: uniqueJoin([
+      hasAny(text, ["留白", "文字", "排版"]) ? "增加适当留白，主体不要进入底部安全留白区" : "",
+      hasAny(text, ["不裁", "不要裁", "保留构图"]) ? "保留原构图，不裁切头发、手和主体关键部位" : "",
+      hasAny(text, ["竖图", "9:16"]) ? "适配 9:16 竖图，主体居中偏上，底部保留安全区" : "",
+      hasAny(text, ["方图", "1:1"]) ? "适配 1:1 方图，主体清晰，边缘留白" : "",
+      hasAny(text, ["突出主体", "主体更突出"]) ? "主体更突出，背景简洁不抢戏" : "",
+      hasAny(text, ["手绘", "注解", "箭头"]) ? "注解围绕物件分布，保留空白，不遮挡主体和人物脸部" : ""
+    ])
+  };
 }
 
 function mergeForm(form, patch) {
   return { ...form, ...patch, bottomSafeArea: patch.bottomSafeArea || form.bottomSafeArea || BOTTOM_SAFE_AREA };
 }
 
-function noteRules(form) {
+function applyFillMode(currentForm, patch, mode, category) {
+  if (mode === "overwrite") return mergeForm(currentForm, patch);
+
+  const next = { ...currentForm };
+  Object.keys(patch).forEach((key) => {
+    if (!patch[key]) return;
+    if (!next[key] || next[key] === defaultForm[key]) next[key] = patch[key];
+  });
+
+  next.rawIdea = patch.rawIdea;
+  if (
+    patch.edit &&
+    (!currentForm.edit ||
+      currentForm.edit === defaultForm.edit ||
+      currentForm.edit === (templates[category] && templates[category].edit))
+  ) {
+    next.edit = patch.edit;
+  }
+  next.bottomSafeArea = next.bottomSafeArea || BOTTOM_SAFE_AREA;
+  return next;
+}
+
+function analyzeOffline(rawIdea, currentForm, mode, fallbackCategory) {
+  const category = detectCategory(rawIdea, fallbackCategory);
+  const template = templates[category] || templates.general;
+  const enhancements = ideaEnhancements(rawIdea);
+  const patch = {
+    ...template,
+    rawIdea,
+    photoType: detectPhotoType(rawIdea, category),
+    edit: uniqueJoin([rawIdea, template.edit]),
+    targetStyle: uniqueJoin([template.targetStyle, enhancements.targetStyle]),
+    mood: uniqueJoin([template.mood, enhancements.mood]),
+    lighting: uniqueJoin([template.lighting, enhancements.lighting]),
+    color: uniqueJoin([template.color, enhancements.color]),
+    composition: uniqueJoin([template.composition, enhancements.composition])
+  };
+  return { category, form: applyFillMode(currentForm, patch, mode, category) };
+}
+
+function line(label, value) {
+  return `${label}：${clean(value) || "未填写"}`;
+}
+
+function annotationRules(form) {
   const parts = [
-    form.annotationObjects ? `注解对象：${form.annotationObjects}` : "",
-    form.annotationTextStyle ? `文字风格：${form.annotationTextStyle}` : "",
-    form.lineStyle ? `线条：${form.lineStyle}` : "",
-    form.decorations ? `装饰：${form.decorations}` : "",
-    form.blankSpaceRule ? `留白：${form.blankSpaceRule}` : ""
+    clean(form.annotationObjects) ? `注解对象：${form.annotationObjects}` : "",
+    clean(form.annotationTextStyle) ? `文字风格：${form.annotationTextStyle}` : "",
+    clean(form.lineStyle) ? `线条：${form.lineStyle}` : "",
+    clean(form.decorations) ? `装饰：${form.decorations}` : "",
+    clean(form.blankSpaceRule) ? `留白：${form.blankSpaceRule}` : ""
   ].filter(Boolean);
-  return parts.length ? `${parts.join("\n")}\n文字必须清晰可读，不要生成乱码。` : "无特殊手账注解要求。";
+  return parts.length ? `${parts.join("\n")}\n如包含文字，文字必须清晰可读，不要生成乱码。` : "";
 }
 
 function buildOutputs(form) {
+  const annotations = annotationRules(form);
   const full = [
-    `修图目标：${form.photoType || "日常照片"}；${form.usageScene || "通用修图工具"}`,
-    `保留内容：${form.keep || "未填写"}`,
-    `修改方向：${form.edit || "未填写"}`,
-    `主体与场景：${[form.subject, form.scene, form.actionRelation].filter(Boolean).join("；") || "未填写"}`,
-    `风格要求：${[form.targetStyle, form.mood, form.retouchStrength].filter(Boolean).join("；") || "未填写"}`,
-    `光线与色彩：${[form.lighting, form.color, form.texture].filter(Boolean).join("；") || "未填写"}`,
-    `构图与画质：${[form.composition, form.aspectRatio, form.quality].filter(Boolean).join("；") || "未填写"}`,
-    `手账注解规则：${noteRules(form)}`,
-    `底部安全留白：${form.bottomSafeArea || BOTTOM_SAFE_AREA}`,
-    `禁止项：${form.negativePrompt || "未填写"}`
-  ].join("\n\n");
+    line("修图目标", `${form.photoType || "日常照片"}；${form.usageScene || "通用修图工具"}`),
+    line("保留内容", form.keep),
+    line("修改方向", form.edit),
+    line("主体与场景", [form.subject, form.scene, form.actionRelation].filter(Boolean).join("；")),
+    line("风格要求", [form.targetStyle, form.mood, form.retouchStrength].filter(Boolean).join("；")),
+    line("光线与色彩", [form.lighting, form.color, form.texture].filter(Boolean).join("；")),
+    line("构图与画质", [form.composition, form.aspectRatio, form.quality].filter(Boolean).join("；")),
+    annotations ? line("注解与涂鸦规则", annotations) : "",
+    line("底部安全留白", form.bottomSafeArea || BOTTOM_SAFE_AREA),
+    line("禁止项", form.negativePrompt)
+  ].filter(Boolean).join("\n\n");
 
   const layered = [
-    `主体：${form.subject || form.photoType || "未填写"}`,
-    `场景：${form.scene || form.usageScene || "未填写"}`,
-    `动作 / 关系：${form.actionRelation || "未填写"}`,
-    `氛围：${form.mood || "未填写"}`,
-    `光线：${form.lighting || "未填写"}`,
-    `色彩：${form.color || "未填写"}`,
-    `质感：${form.texture || "未填写"}`,
-    `构图：${[form.composition, form.aspectRatio].filter(Boolean).join("；") || "未填写"}`,
-    `画质：${form.quality || "未填写"}`,
-    `手账注解：${noteRules(form)}`,
-    `底部安全留白：${form.bottomSafeArea || BOTTOM_SAFE_AREA}`,
-    `负面词：${form.negativePrompt || "未填写"}`
-  ].join("\n");
+    line("主体", form.subject || form.photoType),
+    line("场景", form.scene || form.usageScene),
+    line("动作 / 关系", form.actionRelation),
+    line("氛围", form.mood),
+    line("光线", form.lighting),
+    line("色彩", form.color),
+    line("质感", form.texture),
+    line("构图", [form.composition, form.aspectRatio].filter(Boolean).join("；")),
+    line("画质", form.quality),
+    annotations ? line("注解 / 涂鸦", annotations) : "",
+    line("底部安全留白", form.bottomSafeArea || BOTTOM_SAFE_AREA),
+    line("负面词", form.negativePrompt)
+  ].filter(Boolean).join("\n");
 
   const compact = [
     form.photoType || "日常照片修图",
@@ -256,7 +396,7 @@ function buildOutputs(form) {
     form.lighting,
     form.color,
     form.quality,
-    form.annotationObjects || form.lineStyle ? "白色手绘注解、短句小碎念、保留空白" : "",
+    annotations ? "加入清晰可读的注解或涂鸦覆盖，保留底图可辨识" : "",
     "底部额外预留不少于 240px 纯白色范围，或约占画面高度 12% 的底部安全留白区",
     form.negativePrompt ? `不要：${form.negativePrompt}` : ""
   ].filter(Boolean).join("，");
@@ -273,6 +413,7 @@ function buildOutputs(form) {
     color: form.color,
     composition: form.composition,
     quality: form.quality,
+    annotations,
     bottom_safe_area: form.bottomSafeArea || BOTTOM_SAFE_AREA,
     negative_prompt: form.negativePrompt
   }, null, 2);
@@ -286,7 +427,9 @@ Page({
     categories,
     fields,
     tabs,
+    effectChips,
     activeTab: "full",
+    advancedOpen: false,
     form: { ...defaultForm },
     outputs: buildOutputs(defaultForm),
     currentOutput: buildOutputs(defaultForm).full,
@@ -299,7 +442,8 @@ Page({
       this.setData({
         form: mergeForm(defaultForm, saved.form),
         selectedCategory: saved.selectedCategory || "general",
-        activeTab: saved.activeTab || "full"
+        activeTab: saved.activeTab || "full",
+        advancedOpen: !!saved.advancedOpen
       });
     }
     this.refreshOutputs();
@@ -309,17 +453,18 @@ Page({
     wx.setStorageSync(STORAGE_KEY, {
       form: this.data.form,
       selectedCategory: this.data.selectedCategory,
-      activeTab: this.data.activeTab
+      activeTab: this.data.activeTab,
+      advancedOpen: this.data.advancedOpen
     });
   },
 
   refreshOutputs() {
     const outputs = buildOutputs(this.data.form);
-    const filled = Object.keys(this.data.form).filter((key) => String(this.data.form[key] || "").trim()).length;
+    const filled = Object.keys(this.data.form).filter((key) => clean(this.data.form[key])).length;
     this.setData({
       outputs,
       currentOutput: outputs[this.data.activeTab],
-      filledScore: Math.min(100, Math.round((filled / 24) * 100))
+      filledScore: Math.min(100, Math.round((filled / fields.length) * 100))
     });
     this.persist();
   },
@@ -337,7 +482,18 @@ Page({
 
   selectCategory(event) {
     const id = event.currentTarget.dataset.id;
-    this.setData({ selectedCategory: id, form: fillEmpty(this.data.form, templates[id] || templates.general) });
+    this.setData({
+      selectedCategory: id,
+      form: applyFillMode(this.data.form, templates[id] || templates.general, "fill-empty", id)
+    });
+    this.refreshOutputs();
+  },
+
+  addEffectChip(event) {
+    const text = event.currentTarget.dataset.text;
+    const current = clean(this.data.form.rawIdea);
+    const next = current.includes(text) ? current : `${current}${current ? "，" : ""}${text}`;
+    this.setData({ "form.rawIdea": next });
     this.refreshOutputs();
   },
 
@@ -350,23 +506,27 @@ Page({
   },
 
   analyze(mode) {
-    const rawIdea = (this.data.form.rawIdea || "").trim();
+    const rawIdea = clean(this.data.form.rawIdea);
     if (!rawIdea) {
       wx.showToast({ title: "先写一句原始想法", icon: "none" });
       return;
     }
-    const category = detectCategory(rawIdea);
-    const patch = { ...templates[category], rawIdea };
+    const analyzed = analyzeOffline(rawIdea, this.data.form, mode, this.data.selectedCategory);
     this.setData({
-      selectedCategory: category,
-      form: mode === "overwrite" ? mergeForm(this.data.form, patch) : fillEmpty(this.data.form, patch)
+      selectedCategory: analyzed.category,
+      form: analyzed.form
     });
     this.refreshOutputs();
     wx.showToast({ title: mode === "overwrite" ? "已覆盖填充" : "已补齐空项", icon: "success" });
   },
 
+  toggleAdvanced() {
+    this.setData({ advancedOpen: !this.data.advancedOpen });
+    this.persist();
+  },
+
   clearAll() {
-    this.setData({ form: { ...defaultForm }, selectedCategory: "general", activeTab: "full" });
+    this.setData({ form: { ...defaultForm }, selectedCategory: "general", activeTab: "full", advancedOpen: false });
     this.refreshOutputs();
     wx.showToast({ title: "已清空", icon: "success" });
   },
