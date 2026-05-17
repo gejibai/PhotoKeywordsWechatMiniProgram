@@ -21,6 +21,27 @@
     </block>
   </view>
 
+  <view class="panel trends">
+    <view class="advanced-head" bindtap="toggleTrends">
+      <view>
+        <view class="section-title">最近流行灵感</view>
+        <view class="section-hint">把最近好看的修图玩法先藏在这里，想换口味再展开。</view>
+      </view>
+      <view class="chevron">{{trendsOpen ? "收起" : "展开"}}</view>
+    </view>
+    <view wx:if="{{trendsOpen}}" class="trend-grid">
+      <block wx:for="{{trendTemplates}}" wx:key="name">
+        <view class="trend-card {{selectedCategory === item.id ? 'active' : ''}}" data-id="{{item.id}}" bindtap="selectTrendTemplate">
+          <view class="trend-top">
+            <view class="trend-name">{{item.name}}</view>
+            <view class="trend-tag">{{item.tag}}</view>
+          </view>
+          <view class="trend-desc">{{item.desc}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+
   <view class="panel">
     <view class="step-head inner">
       <view class="step-index">2</view>

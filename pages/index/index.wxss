@@ -128,6 +128,60 @@
   line-height: 1.42;
 }
 
+.trends {
+  margin-top: -4rpx;
+}
+
+.trend-grid {
+  margin-top: 22rpx;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14rpx;
+}
+
+.trend-card {
+  padding: 20rpx;
+  border-radius: 24rpx;
+  background: #fff8dd;
+  border: 2rpx solid #dfd0a5;
+  box-shadow: 0 8rpx 20rpx rgba(107, 78, 29, 0.05);
+}
+
+.trend-card.active {
+  border-color: #a88a43;
+  background: #fff0bf;
+}
+
+.trend-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14rpx;
+}
+
+.trend-name {
+  color: #3b2f1d;
+  font-size: 28rpx;
+  font-weight: 900;
+}
+
+.trend-tag {
+  flex-shrink: 0;
+  padding: 6rpx 14rpx;
+  border-radius: 999rpx;
+  background: #3b2f1d;
+  color: #fff8de;
+  font-size: 21rpx;
+  font-weight: 850;
+}
+
+.trend-desc {
+  margin-top: 12rpx;
+  color: #7a6a4b;
+  font-size: 24rpx;
+  line-height: 1.5;
+}
+
 .idea {
   width: 100%;
   min-height: 210rpx;

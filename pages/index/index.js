@@ -34,11 +34,9 @@ const categories = [
   { id: "portrait", name: "人像变好看", desc: "自拍、合照、头像，自然干净不网红" },
   { id: "lifestyle", name: "日常变干净", desc: "房间、咖啡馆、书桌、餐桌更舒服" },
   { id: "film", name: "胶片氛围感", desc: "复古颗粒、低饱和、随手拍感觉" },
-  { id: "note", name: "加手账小字", desc: "白色手绘线、箭头、小碎念文字" },
   { id: "travel", name: "旅行更出片", desc: "城市、路牌、海边、山野、记忆感" },
   { id: "pet_object", name: "小物更可爱", desc: "宠物、玩偶、杯子、书、本子" },
   { id: "cleanup", name: "去掉杂物", desc: "清理背景、补空白、改比例、留白" },
-  { id: "doodle_snap", name: "涂鸦快照风", desc: "手持随拍、霓虹马克笔、密集涂鸦覆盖" },
   { id: "general", name: "我也说不清", desc: "先帮我变自然、干净、好看" }
 ];
 
@@ -202,6 +200,33 @@ const tabs = [
   { id: "layered", name: "分层" },
   { id: "compact", name: "一句话" },
   { id: "json", name: "JSON" }
+];
+
+const trendTemplates = [
+  {
+    id: "note",
+    name: "手账碎碎念",
+    tag: "可爱注解",
+    desc: "白色线条、小箭头、小字批注，适合咖啡、餐桌、日常照片。"
+  },
+  {
+    id: "doodle_snap",
+    name: "涂鸦快照风",
+    tag: "高能出片",
+    desc: "霓虹马克笔、密集涂鸦、杂志标记感，适合做社交平台故事图。"
+  },
+  {
+    id: "film",
+    name: "低饱和胶片",
+    tag: "松弛氛围",
+    desc: "轻颗粒、低对比、随手拍感，适合街拍、旅行和生活记录。"
+  },
+  {
+    id: "lifestyle",
+    name: "奶油生活感",
+    tag: "温柔干净",
+    desc: "暖白、奶油色、窗边自然光，适合房间、咖啡馆和书桌。"
+  }
 ];
 
 const effectChips = [
@@ -437,9 +462,11 @@ Page({
     fields,
     tabs,
     effectChips,
+    trendTemplates,
     activeTab: "full",
     advancedOpen: false,
     examplesOpen: false,
+    trendsOpen: false,
     form: { ...defaultForm },
     outputs: buildOutputs(defaultForm),
     currentOutput: buildOutputs(defaultForm).full,
@@ -454,7 +481,8 @@ Page({
         selectedCategory: saved.selectedCategory || "general",
         activeTab: saved.activeTab || "full",
         advancedOpen: !!saved.advancedOpen,
-        examplesOpen: !!saved.examplesOpen
+        examplesOpen: !!saved.examplesOpen,
+        trendsOpen: !!saved.trendsOpen
       });
     }
     this.refreshOutputs();
@@ -466,7 +494,8 @@ Page({
       selectedCategory: this.data.selectedCategory,
       activeTab: this.data.activeTab,
       advancedOpen: this.data.advancedOpen,
-      examplesOpen: this.data.examplesOpen
+      examplesOpen: this.data.examplesOpen,
+      trendsOpen: this.data.trendsOpen
     });
   },
 
@@ -501,6 +530,17 @@ Page({
     this.refreshOutputs();
   },
 
+  selectTrendTemplate(event) {
+    const id = event.currentTarget.dataset.id;
+    const template = templates[id] || templates.general;
+    this.setData({
+      selectedCategory: id,
+      form: applyFillMode(this.data.form, template, "fill-empty", id)
+    });
+    this.refreshOutputs();
+    wx.showToast({ title: "已套用灵感模板", icon: "success" });
+  },
+
   addEffectChip(event) {
     const text = event.currentTarget.dataset.text;
     const current = clean(this.data.form.rawIdea);
@@ -511,6 +551,11 @@ Page({
 
   toggleExamples() {
     this.setData({ examplesOpen: !this.data.examplesOpen });
+    this.persist();
+  },
+
+  toggleTrends() {
+    this.setData({ trendsOpen: !this.data.trendsOpen });
     this.persist();
   },
 
@@ -548,7 +593,8 @@ Page({
       selectedCategory: "general",
       activeTab: "full",
       advancedOpen: false,
-      examplesOpen: false
+      examplesOpen: false,
+      trendsOpen: false
     });
     this.refreshOutputs();
     wx.showToast({ title: "已清空", icon: "success" });
