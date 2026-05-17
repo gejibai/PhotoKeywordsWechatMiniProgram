@@ -31,7 +31,7 @@
     </view>
     <view wx:if="{{trendsOpen}}" class="trend-grid">
       <block wx:for="{{trendTemplates}}" wx:key="name">
-        <view class="trend-card {{selectedCategory === item.id ? 'active' : ''}}" data-id="{{item.id}}" bindtap="selectTrendTemplate">
+        <view class="trend-card {{selectedCategory === item.category ? 'active' : ''}}" data-index="{{index}}" bindtap="selectTrendTemplate">
           <view class="trend-top">
             <view class="trend-name">{{item.name}}</view>
             <view class="trend-tag">{{item.tag}}</view>
