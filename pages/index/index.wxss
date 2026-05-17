@@ -3,18 +3,20 @@
   padding: 28rpx;
   padding-bottom: 80rpx;
   box-sizing: border-box;
+  background: #f5efd9;
 }
 
 .hero {
-  padding: 18rpx 4rpx 30rpx;
+  padding: 18rpx 4rpx 28rpx;
 }
 
 .eyebrow {
   display: inline-flex;
   padding: 8rpx 16rpx;
   border-radius: 999rpx;
-  background: #ecfeff;
-  color: #0e7490;
+  background: #fff9e7;
+  border: 1rpx solid #d6bf80;
+  color: #6f5528;
   font-size: 23rpx;
   font-weight: 800;
 }
@@ -24,21 +26,21 @@
   font-size: 48rpx;
   line-height: 1.14;
   font-weight: 900;
-  color: #111827;
+  color: #2f2617;
 }
 
 .subtitle {
   margin-top: 16rpx;
-  color: #64748b;
+  color: #7a6a4b;
   font-size: 28rpx;
   line-height: 1.65;
 }
 
 .panel {
-  background: rgba(255, 255, 255, 0.96);
-  border: 1rpx solid rgba(226, 232, 240, 0.9);
+  background: rgba(255, 251, 238, 0.94);
+  border: 1rpx solid #dfd0a5;
   border-radius: 24rpx;
-  box-shadow: 0 18rpx 50rpx rgba(15, 23, 42, 0.07);
+  box-shadow: 0 14rpx 34rpx rgba(107, 78, 29, 0.08);
   padding: 30rpx;
   margin-bottom: 26rpx;
 }
@@ -63,8 +65,8 @@
   width: 48rpx;
   height: 48rpx;
   border-radius: 50%;
-  background: #111827;
-  color: #fff;
+  background: #3b2f1d;
+  color: #fff8de;
   text-align: center;
   line-height: 48rpx;
   font-size: 24rpx;
@@ -75,86 +77,121 @@
   font-size: 32rpx;
   line-height: 1.25;
   font-weight: 850;
-  color: #111827;
+  color: #2f2617;
 }
 
 .section-hint {
   margin-top: 8rpx;
-  color: #64748b;
+  color: #85765a;
   font-size: 24rpx;
   line-height: 1.5;
 }
 
-.category-scroll {
-  white-space: nowrap;
+.category-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
   margin-bottom: 28rpx;
 }
 
-.category-row {
-  display: flex;
-  gap: 16rpx;
-}
-
 .category-card {
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
-  width: 242rpx;
-  min-height: 150rpx;
+  justify-content: space-between;
+  width: calc((100% - 24rpx) / 3);
+  min-height: 188rpx;
   box-sizing: border-box;
-  padding: 22rpx;
-  border-radius: 22rpx;
-  background: #fff;
-  border: 2rpx solid #e5e7eb;
-  white-space: normal;
+  padding: 18rpx;
+  border-radius: 24rpx;
+  background: #fffaf0;
+  border: 2rpx solid #dfd0a5;
+  box-shadow: 0 8rpx 22rpx rgba(107, 78, 29, 0.05);
 }
 
 .category-card.active {
-  border-color: #14b8a6;
-  background: #f0fdfa;
-  box-shadow: 0 10rpx 30rpx rgba(20, 184, 166, 0.16);
+  border-color: #a88a43;
+  background: #fff4cf;
+  box-shadow: 0 12rpx 28rpx rgba(120, 86, 28, 0.14);
 }
 
 .category-name {
-  font-size: 26rpx;
-  line-height: 1.25;
+  font-size: 25rpx;
+  line-height: 1.28;
   font-weight: 850;
-  color: #111827;
+  color: #3b2f1d;
 }
 
 .category-desc {
   margin-top: 12rpx;
-  color: #64748b;
-  font-size: 22rpx;
-  line-height: 1.4;
+  color: #8a7855;
+  font-size: 21rpx;
+  line-height: 1.42;
 }
 
 .idea {
   width: 100%;
   min-height: 210rpx;
   box-sizing: border-box;
-  border-radius: 20rpx;
-  background: #f8fafc;
-  border: 1rpx solid #e5e7eb;
+  border-radius: 24rpx;
+  background: #fffdf6;
+  border: 1rpx solid #dfd0a5;
   padding: 24rpx;
   font-size: 29rpx;
   line-height: 1.6;
-  color: #111827;
+  color: #2f2617;
+}
+
+.example-toggle {
+  margin-top: 18rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18rpx;
+  padding: 4rpx 2rpx 0;
+}
+
+.example-title {
+  color: #6f5528;
+  font-size: 24rpx;
+  font-weight: 800;
+}
+
+.example-hint {
+  margin-top: 4rpx;
+  color: #9a875f;
+  font-size: 21rpx;
+  line-height: 1.35;
+}
+
+.example-state {
+  flex-shrink: 0;
+  padding: 8rpx 16rpx;
+  border-radius: 999rpx;
+  background: #fff8dd;
+  border: 1rpx solid #d7bf7f;
+  color: #6f5528;
+  font-size: 24rpx;
+  font-weight: 850;
 }
 
 .chip-row {
-  margin-top: 18rpx;
+  margin-top: 14rpx;
   display: flex;
   gap: 12rpx;
   flex-wrap: wrap;
 }
 
 .chip {
-  padding: 12rpx 18rpx;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 14rpx 22rpx;
   border-radius: 999rpx;
-  background: #f1f5f9;
-  color: #334155;
+  background: #fff8dd;
+  border: 2rpx solid #c7ad6b;
+  color: #5f4b24;
   font-size: 24rpx;
   font-weight: 750;
+  line-height: 1.45;
 }
 
 .actions {
@@ -167,7 +204,7 @@
 .btn {
   min-height: 76rpx;
   padding: 0 26rpx;
-  border-radius: 18rpx;
+  border-radius: 999rpx;
   font-size: 26rpx;
   font-weight: 800;
   line-height: 76rpx;
@@ -178,19 +215,19 @@
 }
 
 .primary {
-  background: #0f766e;
-  color: #fff;
+  background: #3b2f1d;
+  color: #fff8de;
 }
 
 .ghost {
-  background: #fff;
-  color: #0f766e;
-  border: 1rpx solid #99f6e4;
+  background: #fff8dd;
+  color: #5f4b24;
+  border: 1rpx solid #c7ad6b;
 }
 
 .soft {
-  background: #f1f5f9;
-  color: #334155;
+  background: #efe3bf;
+  color: #5f4b24;
 }
 
 .advanced {
@@ -208,8 +245,9 @@
   flex-shrink: 0;
   padding: 10rpx 18rpx;
   border-radius: 999rpx;
-  background: #f8fafc;
-  color: #0f766e;
+  background: #fff8dd;
+  border: 1rpx solid #c7ad6b;
+  color: #5f4b24;
   font-size: 24rpx;
   font-weight: 800;
 }
@@ -224,7 +262,7 @@
 
 .label {
   margin-bottom: 10rpx;
-  color: #475569;
+  color: #6f5c36;
   font-size: 25rpx;
   font-weight: 750;
 }
@@ -233,12 +271,12 @@
   min-height: 78rpx;
   width: 100%;
   box-sizing: border-box;
-  border-radius: 18rpx;
-  background: #f8fafc;
-  border: 1rpx solid #e5e7eb;
+  border-radius: 20rpx;
+  background: #fffdf6;
+  border: 1rpx solid #dfd0a5;
   padding: 0 22rpx;
   font-size: 28rpx;
-  color: #111827;
+  color: #2f2617;
 }
 
 .textarea {
@@ -258,8 +296,9 @@
   flex-shrink: 0;
   padding: 10rpx 18rpx;
   border-radius: 999rpx;
-  background: #ecfeff;
-  color: #0e7490;
+  background: #fff8dd;
+  border: 1rpx solid #c7ad6b;
+  color: #5f4b24;
   font-size: 24rpx;
   font-weight: 800;
 }
@@ -269,23 +308,23 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   padding: 8rpx;
-  border-radius: 18rpx;
-  background: #f1f5f9;
+  border-radius: 999rpx;
+  background: #efe3bf;
 }
 
 .tab {
   text-align: center;
   padding: 16rpx 6rpx;
-  border-radius: 14rpx;
-  color: #64748b;
+  border-radius: 999rpx;
+  color: #7a6a4b;
   font-size: 24rpx;
   font-weight: 800;
 }
 
 .tab.on {
-  background: #fff;
-  color: #111827;
-  box-shadow: 0 4rpx 14rpx rgba(15, 23, 42, 0.08);
+  background: #fff8dd;
+  color: #3b2f1d;
+  box-shadow: 0 4rpx 14rpx rgba(107, 78, 29, 0.1);
 }
 
 .output {
@@ -295,9 +334,9 @@
   overflow: auto;
   white-space: pre-wrap;
   word-break: break-word;
-  border-radius: 20rpx;
-  background: #111827;
-  color: #f8fafc;
+  border-radius: 24rpx;
+  background: #3b2f1d;
+  color: #fff8de;
   padding: 26rpx;
   font-size: 25rpx;
   line-height: 1.7;

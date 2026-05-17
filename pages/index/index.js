@@ -204,7 +204,16 @@ const tabs = [
   { id: "json", name: "JSON" }
 ];
 
-const effectChips = ["自然", "清透", "胶片", "奶油色", "底部留白", "密集涂鸦", "白色手绘线", "去掉杂物"];
+const effectChips = [
+  "自拍修自然一点，皮肤干净但保留真实纹理，不要网红脸",
+  "咖啡店照片加白色手账小字，保留原图氛围，底部留白",
+  "旅行街拍调成胶片感，低饱和，有一点随手拍颗粒",
+  "真实手机随拍，加霓虹马克笔涂鸦，密集混乱一点",
+  "房间照片变干净温暖，保留生活痕迹，不要像样板间",
+  "餐桌照片加白色线条注解，小碎念文字，画面不要太满",
+  "去掉背景杂物，补齐干净墙面，主体位置不要改变",
+  "小物照片更可爱，奶油色，柔和自然光，细节清楚"
+];
 
 const rules = [
   { category: "doodle_snap", words: ["马克笔", "数字马克笔", "霓虹", "混乱涂鸦", "密集涂鸦", "涂鸦覆盖", "快照", "手持手机", "学生日记", "杂志标记", "故事批注"] },
@@ -430,6 +439,7 @@ Page({
     effectChips,
     activeTab: "full",
     advancedOpen: false,
+    examplesOpen: false,
     form: { ...defaultForm },
     outputs: buildOutputs(defaultForm),
     currentOutput: buildOutputs(defaultForm).full,
@@ -443,7 +453,8 @@ Page({
         form: mergeForm(defaultForm, saved.form),
         selectedCategory: saved.selectedCategory || "general",
         activeTab: saved.activeTab || "full",
-        advancedOpen: !!saved.advancedOpen
+        advancedOpen: !!saved.advancedOpen,
+        examplesOpen: !!saved.examplesOpen
       });
     }
     this.refreshOutputs();
@@ -454,7 +465,8 @@ Page({
       form: this.data.form,
       selectedCategory: this.data.selectedCategory,
       activeTab: this.data.activeTab,
-      advancedOpen: this.data.advancedOpen
+      advancedOpen: this.data.advancedOpen,
+      examplesOpen: this.data.examplesOpen
     });
   },
 
@@ -497,6 +509,11 @@ Page({
     this.refreshOutputs();
   },
 
+  toggleExamples() {
+    this.setData({ examplesOpen: !this.data.examplesOpen });
+    this.persist();
+  },
+
   analyzeOverwrite() {
     this.analyze("overwrite");
   },
@@ -526,7 +543,13 @@ Page({
   },
 
   clearAll() {
-    this.setData({ form: { ...defaultForm }, selectedCategory: "general", activeTab: "full", advancedOpen: false });
+    this.setData({
+      form: { ...defaultForm },
+      selectedCategory: "general",
+      activeTab: "full",
+      advancedOpen: false,
+      examplesOpen: false
+    });
     this.refreshOutputs();
     wx.showToast({ title: "已清空", icon: "success" });
   },
