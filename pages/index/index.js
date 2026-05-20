@@ -2,6 +2,8 @@ const BOTTOM_SAFE_AREA =
   "生成的每张图底部都额外多留出不少于 240px 的纯白色范围，或约占画面高度 12% 的底部安全留白区，用作后期放文字、排版或避免重要内容被底部平台信息遮挡；不要在这一区域放主体、注解、装饰元素或杂乱背景。";
 
 const STORAGE_KEY = "photoKeywordsMiniProgram";
+const SHARE_TITLE = "修图魔法铺｜一句话整理修图关键词";
+const SHARE_PATH = "/pages/index/index";
 
 const defaultForm = {
   rawIdea: "",
@@ -532,6 +534,12 @@ Page({
   },
 
   onLoad() {
+    if (wx.showShareMenu) {
+      wx.showShareMenu({
+        menus: ["shareAppMessage", "shareTimeline"]
+      });
+    }
+
     const saved = wx.getStorageSync(STORAGE_KEY);
     if (saved && saved.form) {
       this.setData({
@@ -544,6 +552,20 @@ Page({
       });
     }
     this.refreshOutputs();
+  },
+
+  onShareAppMessage() {
+    return {
+      title: SHARE_TITLE,
+      path: SHARE_PATH
+    };
+  },
+
+  onShareTimeline() {
+    return {
+      title: SHARE_TITLE,
+      query: ""
+    };
   },
 
   persist() {

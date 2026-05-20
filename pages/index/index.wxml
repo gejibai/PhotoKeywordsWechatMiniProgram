@@ -3,6 +3,7 @@
     <view class="eyebrow">修图灵感小帮手</view>
     <view class="title">修图魔法铺</view>
     <view class="subtitle">把“想变好看一点”翻译成清楚的修图提示词，顺手整理风格、光线、色彩、留白和避坑要求。</view>
+    <button class="share-btn" open-type="share">分享给朋友</button>
   </view>
 
   <view class="step-head">
