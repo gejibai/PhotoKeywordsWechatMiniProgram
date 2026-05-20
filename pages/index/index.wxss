@@ -36,23 +36,6 @@
   line-height: 1.65;
 }
 
-.share-btn {
-  margin-top: 22rpx;
-  display: inline-flex;
-  min-height: 64rpx;
-  padding: 0 24rpx;
-  border-radius: 999rpx;
-  background: #3b2f1d;
-  color: #fff8de;
-  font-size: 24rpx;
-  font-weight: 850;
-  line-height: 64rpx;
-}
-
-.share-btn::after {
-  border: 0;
-}
-
 .panel {
   background: rgba(255, 251, 238, 0.94);
   border: 1rpx solid #dfd0a5;
