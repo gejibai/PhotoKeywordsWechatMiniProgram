@@ -36,6 +36,18 @@
   line-height: 1.65;
 }
 
+.hero-tip {
+  margin-top: 18rpx;
+  padding: 20rpx 22rpx;
+  border-radius: 22rpx;
+  background: rgba(255, 249, 220, 0.84);
+  border: 1rpx solid #dfd0a5;
+  color: #725d42;
+  font-size: 24rpx;
+  font-weight: 750;
+  line-height: 1.55;
+}
+
 .panel {
   background: rgba(255, 251, 238, 0.94);
   border: 1rpx solid #dfd0a5;
@@ -126,6 +138,30 @@
   color: #8a7855;
   font-size: 21rpx;
   line-height: 1.42;
+}
+
+.meme-notice {
+  margin: -8rpx 0 28rpx;
+  padding: 24rpx;
+  border-radius: 24rpx;
+  background: #e6f9f6;
+  border: 2rpx solid rgba(17, 168, 155, 0.42);
+  box-shadow: 0 8rpx 22rpx rgba(54, 119, 105, 0.1);
+}
+
+.notice-title {
+  color: #0b8f84;
+  font-size: 28rpx;
+  font-weight: 900;
+  line-height: 1.35;
+}
+
+.notice-text {
+  margin-top: 8rpx;
+  color: #725d42;
+  font-size: 24rpx;
+  font-weight: 750;
+  line-height: 1.55;
 }
 
 .trends {

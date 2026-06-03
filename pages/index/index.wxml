@@ -3,6 +3,7 @@
     <view class="eyebrow">修图灵感小帮手</view>
     <view class="title">修图魔法铺</view>
     <view class="subtitle">把“想变好看一点”翻译成清楚的修图提示词，顺手整理风格、光线、色彩、留白和避坑要求。</view>
+    <view class="hero-tip">想法写得很随意也没关系，下面写完后点「生成修图提示词」，可以把内容整理成清楚可复制的版本。</view>
   </view>
 
   <view class="step-head">
@@ -19,6 +20,10 @@
         <view class="category-desc">{{item.desc}}</view>
       </view>
     </block>
+  </view>
+  <view wx:if="{{selectedCategory === 'meme'}}" class="meme-notice">
+    <view class="notice-title">表情包想更像你脑子里的梗？</view>
+    <view class="notice-text">建议打开高级设置，调整你想要的情绪、文字区位置、贴纸和强调符号；这些细节填得越准，生成的提示词越贴近想要的效果。</view>
   </view>
 
   <view class="panel trends">
@@ -64,9 +69,9 @@
       </block>
     </view>
     <view class="actions">
-      <button class="btn primary" bindtap="analyzeOverwrite">智能拆解并覆盖填充</button>
-      <button class="btn ghost" bindtap="analyzeFillEmpty">只补空项</button>
-      <button class="btn soft" bindtap="clearAll">清空</button>
+      <button class="btn primary" bindtap="analyzeOverwrite">生成修图提示词</button>
+      <button class="btn ghost" bindtap="analyzeFillEmpty">帮我补缺少的</button>
+      <button class="btn soft" bindtap="clearAll">重新写</button>
     </view>
   </view>
 
